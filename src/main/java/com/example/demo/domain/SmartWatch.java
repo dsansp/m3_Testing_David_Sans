@@ -9,7 +9,7 @@ public class SmartWatch extends SmartDevice{
 
 	private HealthMonitor monitor;
 	
-	public SmartWatch() {}
+	public SmartWatch(long l, String ios, RAM ddr4, Battery battery, CPU cpu, HealthMonitor healthMonitor) {}
 	
 	public SmartWatch(Long id, String name, RAM ram, Battery battery, CPU cpu, Boolean wifi, HealthMonitor monitor) {
 		super(id, name, ram, battery, cpu, wifi);

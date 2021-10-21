@@ -2,6 +2,7 @@ package com.example.demo.service.smartPhoneServiceImplTest;
 
 import com.example.demo.domain.SmartDevice;
 import com.example.demo.domain.SmartPhone;
+import com.example.demo.domain.SmartWatch;
 import com.example.demo.service.SmartDeviceFacade;
 import org.junit.jupiter.api.Test;
 
@@ -25,5 +26,14 @@ class SmartDeviceFacadeTest {
 
     @Test
     void createSmartWatch() {
+        SmartDevice result =SmartDeviceFacade.createSmartWatch();
+        assertNotNull(result);
+        assertNotNull(result.getCpu());
+        assertTrue(result.getCpu().getOn());
+        assertNotNull(result.getRam());
+        assertNotNull(result.getBattery());
+        assertTrue(result instanceof SmartWatch);
+        SmartWatch smartwatch =(SmartWatch) result;
+        assertNotNull(smartwatch.getMonitor());
     }
 }
