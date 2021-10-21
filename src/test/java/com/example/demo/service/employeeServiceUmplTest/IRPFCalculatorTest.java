@@ -16,22 +16,22 @@ class IRPFCalculatorTest {
         @Test
         void calculateIRPFTest(){
 
-            double result = calculator.calculateIRPF(100);
-            assertEquals(15D, result);
+            double resultIrpf = calculator.calculateIRPF(100);
+            assertEquals(15D, resultIrpf);
         }
         @DisplayName("comprobamos valor 0")
         @Test
         void calculateIRPFZeroTest(){
 
-            double result = calculator.calculateIRPF(0);
-            assertEquals(0, result);
+            double resultIrpf = calculator.calculateIRPF(0);
+            assertEquals(0, resultIrpf);
         }
-        @DisplayName("Comprobamos Iva negativo")
+        @DisplayName("Comprobamos IRPF negativo")
         @Test
         void calculateIRPFNegativeTest(){
 
-            double result = calculator.calculateIRPF(-100);
-            assertEquals(-15, result);
+            double resultIrfp = calculator.calculateIRPF(-100);
+            assertEquals(-15, resultIrfp);
         }
 
 

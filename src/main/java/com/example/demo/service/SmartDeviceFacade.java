@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.domain.SmartDevice;
 import com.example.demo.domain.SmartPhone;
 import com.example.demo.domain.SmartWatch;
+import com.example.demo.domain.SmartPhone;
 import com.example.demo.domain.pieces.*;
 
 public class SmartDeviceFacade {
