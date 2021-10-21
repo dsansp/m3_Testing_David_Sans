@@ -11,7 +11,7 @@ class IVACalculatorTest {
 
 @DisplayName("Iva correcto")
         @Test
-        void calculateIVATest(){
+        void calculateIVA(){
 
             double result = calculator.calculateIVA(100);
             assertEquals(21, result);
