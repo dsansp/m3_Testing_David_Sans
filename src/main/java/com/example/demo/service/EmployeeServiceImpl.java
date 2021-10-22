@@ -16,8 +16,6 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 
-
-
     @Override
     public Integer count() {
         return this.employeeRepository.count();
@@ -37,7 +35,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Optional<Employee> findOneOptional(Long id) {
 
         try{
-            return Optional.of(this.employeeRepository.findOne(id));
+            return Optional.ofNullable(this.employeeRepository.findOne(id)); //bug solved
         }catch(IllegalArgumentException e){
             e.printStackTrace();
         }
@@ -47,7 +45,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee save(Employee employee) {
-        return this.employeeRepository.save(employee);
+     //   if (employee.getId()==null || employee.getId()==0L)
+     //       throw new IllegalArgumentException("Unexpected value: null");
+
+     //   if(employee.getId() < 0)
+     //       throw new IllegalArgumentException("Unexpected value: null");
+     //   employee.remove(employee.getId());
+
+            return this.employeeRepository.save(employee);
+
+
+     //   return null;
+//problem
     }
 
     @Override

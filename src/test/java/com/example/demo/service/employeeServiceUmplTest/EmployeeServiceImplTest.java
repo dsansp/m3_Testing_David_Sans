@@ -6,14 +6,18 @@ import com.example.demo.repository.EmployeeRepositoryImpl;
 import com.example.demo.service.EmployeeService;
 import com.example.demo.service.EmployeeServiceImpl;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class EmployeeServiceImplTest {
+    EmployeeRepositoryImpl repository;
+    EmployeeServiceImpl service;
 
 
     @Test
@@ -60,23 +64,66 @@ class EmployeeServiceImplTest {
 
 
     }
-/*
+
 
     @Test
     void findOneOptional() {
+
+        EmployeeRepositoryImpl service=new EmployeeRepositoryImpl();
+
+        Optional<Employee> employeeOpt = Optional.ofNullable(service.findOne(900L));
+
+        assertTrue(employeeOpt.isEmpty());
     }
 
     @Test
-    void save() {
+    void saveNullTest() {
+        EmployeeRepositoryImpl service=new EmployeeRepositoryImpl();
+        assertThrows(
+                NullPointerException.class,
+                () -> service.save(null)
+        );
     }
-
     @Test
-    void delete() {
+    void saveIdZeroTest() {
+        EmployeeRepositoryImpl service = new EmployeeRepositoryImpl();
+        Employee empleado = new Employee(0L, "nombre", 30);
+        assertEquals(3, service.count());
+        Employee result = service.save(empleado);
+        assertEquals(4, service.count());
+        assertNotNull(result);
+        assertNotNull(result.getId());
+        assertEquals(4, result.getId());
     }
-
     @Test
-    void deleteAll() {
+    void saveUpdateTest() {
+        EmployeeRepositoryImpl service = new EmployeeRepositoryImpl();
+        Employee empleado = new Employee(1L, "nuevo nombre", 30);
+        assertEquals(3, service.count());
+        Employee result = service.save(empleado);
+        assertEquals(3, service.count());
+        assertEquals(1L, result.getId());
+        Employee employee1 = service.findOne((1L));
+        assertEquals("nuevo nombre", employee1.getName());
+    }
+  @Test
+        void saveNegativeIdTest(){
+      EmployeeRepositoryImpl service = new EmployeeRepositoryImpl();
+      Employee empleado = new Employee(-81L, "nombre XXX", 30);
+      assertEquals(3, service.count());
+      assertThrows(
+              IllegalArgumentException.class,
+              () -> service.save(empleado)
+      );
+      assertEquals(3, service.count());
+
+  }
+    //   @Test
+ //   void delete() {
+//    }
+
+  //  @Test
+    //void deleteAll() {
     }
 
- */
-}
+
