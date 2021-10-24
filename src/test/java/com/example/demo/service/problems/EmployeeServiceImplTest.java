@@ -3,7 +3,6 @@ package com.example.demo.service.problems;
 import com.example.demo.domain.Employee;
 import com.example.demo.repository.EmployeeRepositoryImpl;
 import com.example.demo.service.EmployeeServiceImpl;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.util.Optional;
@@ -35,7 +34,7 @@ class EmployeeServiceImplTest {
         EmployeeRepositoryImpl service = new EmployeeRepositoryImpl();
         Employee employee1 = service.findOne(1L);
         assertNotNull(employee1);
-        assertEquals(1L, employee1.getId());
+        assertEquals(1L, employee1.getId(1L));
         assertNotNull(employee1.getName());
 
 
@@ -87,8 +86,8 @@ class EmployeeServiceImplTest {
         Employee result = service.save(empleado);
         assertEquals(4, service.count());
         assertNotNull(result);
-        assertNotNull(result.getId());
-        assertEquals(4, result.getId());
+        assertNotNull(result.getId(1L));
+        assertEquals(4, result.getId(1L));
     }
     @Test
     void saveUpdateTest() {
@@ -97,7 +96,7 @@ class EmployeeServiceImplTest {
         assertEquals(3, service.count());
         Employee result = service.save(empleado);
         assertEquals(3, service.count());
-        assertEquals(1L, result.getId());
+        assertEquals(1L, result.getId(1L));
         Employee employee1 = service.findOne((1L));
         assertEquals("nuevo nombre", employee1.getName());
 
