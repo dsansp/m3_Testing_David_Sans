@@ -1,4 +1,4 @@
-package com.example.demo.service.smartPhoneServiceImplTest;
+package com.example.demo.service.Junit;
 
 import com.example.demo.domain.SmartPhone;
 import com.example.demo.domain.pieces.Battery;

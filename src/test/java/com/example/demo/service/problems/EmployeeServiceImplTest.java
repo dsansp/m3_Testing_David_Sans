@@ -1,16 +1,11 @@
-package com.example.demo.service.employeeServiceUmplTest;
+package com.example.demo.service.problems;
 
 import com.example.demo.domain.Employee;
-import com.example.demo.repository.EmployeeRepository;
 import com.example.demo.repository.EmployeeRepositoryImpl;
-import com.example.demo.service.EmployeeService;
 import com.example.demo.service.EmployeeServiceImpl;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -105,11 +100,15 @@ class EmployeeServiceImplTest {
         assertEquals(1L, result.getId());
         Employee employee1 = service.findOne((1L));
         assertEquals("nuevo nombre", employee1.getName());
+
     }
-  @Test
+
+
+    @Test
         void saveNegativeIdTest(){
-      EmployeeRepositoryImpl service = new EmployeeRepositoryImpl();
-      Employee empleado = new Employee(-81L, "nombre XXX", 30);
+        EmployeeRepositoryImpl service=new EmployeeRepositoryImpl();
+
+      Employee empleado = new Employee(-8L, "nombre XXX", 30);
       assertEquals(3, service.count());
       assertThrows(
               IllegalArgumentException.class,
@@ -118,12 +117,35 @@ class EmployeeServiceImplTest {
       assertEquals(3, service.count());
 
   }
-    //   @Test
- //   void delete() {
-//    }
+  @Test
+   void deleteNullTest() {
+      EmployeeRepositoryImpl service = new EmployeeRepositoryImpl();
+boolean result = service.delete(null);
+assertFalse(result);
 
-  //  @Test
-    //void deleteAll() {
+  }
+    @Test
+    void deleteNotContainsTest() {
+        EmployeeRepositoryImpl service = new EmployeeRepositoryImpl();
+        boolean result = service.delete(888L);
+        assertFalse(result);
+
+    }
+    @Test
+    void deleteOkTest() {
+        EmployeeRepositoryImpl service = new EmployeeRepositoryImpl();
+        boolean result = service.delete(1L);
+        assertTrue(result);
+    }
+
+    @Test
+    void deleteAll() {
+        EmployeeRepositoryImpl service = new EmployeeRepositoryImpl();
+    assertTrue(service.count()>0);
+    service.deleteAll();
+    assertEquals(0,service.count());
+    }
+
     }
 
 

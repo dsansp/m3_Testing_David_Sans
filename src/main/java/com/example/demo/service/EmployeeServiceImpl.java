@@ -10,10 +10,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     private final EmployeeRepository employeeRepository;
 
-    public EmployeeServiceImpl(EmployeeRepository employeeRepository){
+    public EmployeeServiceImpl(EmployeeRepository employeeRepository) {
         this.employeeRepository = employeeRepository;
     }
-
 
 
     @Override
@@ -34,9 +33,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     @Override
     public Optional<Employee> findOneOptional(Long id) {
 
-        try{
+        try {
             return Optional.ofNullable(this.employeeRepository.findOne(id)); //bug solved
-        }catch(IllegalArgumentException e){
+        } catch (IllegalArgumentException e) {
             e.printStackTrace();
         }
 
@@ -45,27 +44,38 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee save(Employee employee) {
-     //   if (employee.getId()==null || employee.getId()==0L)
-     //       throw new IllegalArgumentException("Unexpected value: null");
+      //  try {
+       //   if (employee.getId()==null || employee.getId()==0L)
+     //         throw new IllegalArgumentException("Unexpected value: null");
 
-     //   if(employee.getId() < 0)
-     //       throw new IllegalArgumentException("Unexpected value: null");
-     //   employee.remove(employee.getId());
+   //     if(employee.getId() < 0)
+   //           throw new IllegalArgumentException("Unexpected value: null");
+    //       employee.remove(employee.getId());
 
             return this.employeeRepository.save(employee);
-
-
+     //   } catch (IllegalArgumentException e) {
+    //        e.printStackTrace();
+        }
      //   return null;
+   // }
+
+
+
+
 //problem
+
+
+        @Override
+        public boolean delete (Long id){
+            return this.employeeRepository.delete(id);
+        }
+
+        @Override
+        public void deleteAll () {
+            this.employeeRepository.deleteAll();
+        }
     }
 
-    @Override
-    public boolean delete(Long id) {
-        return this.employeeRepository.delete(id);
-    }
 
-    @Override
-    public void deleteAll() {
-        this.employeeRepository.deleteAll();
-    }
-}
+
+

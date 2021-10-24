@@ -1,4 +1,4 @@
-package com.example.demo.service.smartPhoneServiceImplTest;
+package com.example.demo.service.Junit;
 
 import com.example.demo.domain.SmartDevice;
 import com.example.demo.domain.SmartPhone;
@@ -26,14 +26,15 @@ class SmartDeviceFacadeTest {
 
     @Test
     void createSmartWatch() {
-        SmartDevice result =SmartDeviceFacade.createSmartWatch();
+        SmartDevice result = SmartDeviceFacade.createSmartWatch();
+
         assertNotNull(result);
         assertNotNull(result.getCpu());
-        assertTrue(result.getCpu().getOn());
+        assertFalse(result.getCpu().getOn());
         assertNotNull(result.getRam());
         assertNotNull(result.getBattery());
-        assertTrue(result instanceof SmartWatch);
-        SmartWatch smartwatch =(SmartWatch) result;
-        assertNotNull(smartwatch.getMonitor());
+
+        SmartWatch reloj = (SmartWatch) result;
+        assertNotNull(reloj.getMonitor());
     }
 }

@@ -57,16 +57,24 @@ public class SmartWatchServiceImpl implements SmartWatchService{
 
     @Override
     public SmartWatch findOne(Long id) {
+        if (id == null) {
+            throw new IllegalArgumentException("El ID no puede ser nulo !");
+        } // bug solved
         return smartwatches.get(id);
     }
 
     @Override
     public SmartWatch save(SmartWatch smartwatch) {
+        if(smartwatch == null)
+            throw new IllegalArgumentException("Unexpected value: null");
+        if (smartwatch.getId() == null
+                || smartwatch.getId() == 0L) {// nuevo smartphone
+            smartwatch.setId(getMaxSmartWatchId() + 1);}
+//bug solved
+        if(smartwatch.getId() < 0)
+            throw new IllegalArgumentException("Unexpected value: null");
 
-        if (smartwatch.getId() == null || smartwatch.getId() == 0L) // nuevo smartphone
-            smartwatch.setId(getMaxSmartWatchId() + 1);
-
-        smartwatches.remove(smartwatch.getId()); // en caso de que ya exista lo quita para actualizarlo
+        smartwatches.remove (smartwatch.getId()); // en caso de que ya exista lo quita para actualizarlo
 
         smartwatches.put(smartwatch.getId(), smartwatch);
         return smartwatch;

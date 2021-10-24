@@ -5,8 +5,10 @@ import com.example.demo.domain.pieces.Battery;
 import com.example.demo.domain.pieces.CPU;
 import com.example.demo.domain.pieces.HealthMonitor;
 import com.example.demo.domain.pieces.RAM;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import java.security.Provider;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -45,8 +47,9 @@ class SmartWatchServiceImplTest {
         assertNull(smart1);
     }
     @Test
-    void findOneExceptionSmWTest(){
+     void findOneExceptionSmWTest(){
         SmartWatchServiceImpl service= new SmartWatchServiceImpl();
+        // verifica si se ha lanzado una excepción
         assertThrows(
                 IllegalArgumentException.class,
                 () -> service.findOne(null)
@@ -55,12 +58,14 @@ class SmartWatchServiceImplTest {
     }
 
     @Test
-    void saveNullTest() {
+    void saveNullTest(){
         SmartWatchServiceImpl service= new SmartWatchServiceImpl();
+
         assertThrows(
                 IllegalArgumentException.class,
                 () -> service.save(null)
         );
+
     }
     @Test
     void saveIdZeroTest() {
@@ -89,6 +94,8 @@ class SmartWatchServiceImplTest {
                 new CPU(1L,8),
                 new HealthMonitor(1L,12.6,7));
         assertEquals(3,service.count());
+// not solved sigue sumando
+
         SmartWatch result= service.save(smart);
         assertEquals(3,service.count());
 
@@ -129,7 +136,7 @@ class SmartWatchServiceImplTest {
     void deleteOkTest(){
         SmartWatchServiceImpl service= new SmartWatchServiceImpl();
         boolean result = service.delete(1L);
-        assertFalse(result);
+        assertTrue(result);
     }
     @Test
     void deleteAll() {

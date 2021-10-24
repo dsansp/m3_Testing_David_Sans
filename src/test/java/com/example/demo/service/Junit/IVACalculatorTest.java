@@ -1,4 +1,4 @@
-package com.example.demo.service.employeeServiceUmplTest;
+package com.example.demo.service.Junit;
 
 import com.example.demo.service.IVACalculator;
 import org.junit.jupiter.api.DisplayName;
