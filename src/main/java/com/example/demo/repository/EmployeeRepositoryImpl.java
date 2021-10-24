@@ -40,13 +40,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 
     @Override
     public Employee save(Employee employee) {
-        // asignar un id
-        if (employee.getId(1L) == null || employee.getId(1L) == 0L) // nuevo employee
-            employee.setId(getMaxId() + 1); // genera id y lo asigna
 
-        employees.remove(employee.getId(1L));
-
-        employees.put(employee.getId(1L), employee);
         return employee;
     }
 

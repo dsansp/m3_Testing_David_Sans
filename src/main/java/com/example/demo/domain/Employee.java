@@ -6,7 +6,8 @@ public class Employee {
     private String name;
     private Integer age;
 
-    public Employee(){}
+    public Employee() {
+    }
 
     public Employee(Long id, String name, Integer age) {
         this.id = id;
@@ -40,4 +41,8 @@ public class Employee {
 
     public void remove(Long id) { //add
     }
+
+    public long getId() { return id;
+    }
+
 }

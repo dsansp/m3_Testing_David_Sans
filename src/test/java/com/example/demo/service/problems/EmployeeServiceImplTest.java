@@ -5,6 +5,7 @@ import com.example.demo.repository.EmployeeRepositoryImpl;
 import com.example.demo.service.EmployeeServiceImpl;
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,8 +26,11 @@ class EmployeeServiceImplTest {
 
        @Test
       void findAllTest() {
-           EmployeeRepositoryImpl service = new EmployeeRepositoryImpl();
-         assertNotNull(service);
+
+          EmployeeRepositoryImpl service = new EmployeeRepositoryImpl();
+           List<Employee> result = service.findAll();
+       assertFalse(result.isEmpty());
+         assertNotNull(result);
          assertEquals(3, service.count());
      }
     @Test
