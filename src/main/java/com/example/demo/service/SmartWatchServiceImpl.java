@@ -73,8 +73,8 @@ public class SmartWatchServiceImpl implements SmartWatchService{
 //bug solved
         if(smartwatch.getId() < 0)
             throw new IllegalArgumentException("Unexpected value: null");
-
-        smartwatches.remove (smartwatch.getId()); // en caso de que ya exista lo quita para actualizarlo
+// bug not solved
+        smartwatches.remove (smartwatch.getId()); // en caso de que ya exista debería quitarlo para actualizarlo
 
         smartwatches.put(smartwatch.getId(), smartwatch);
         return smartwatch;

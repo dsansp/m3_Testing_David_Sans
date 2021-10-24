@@ -1,13 +1,12 @@
 package com.example.demo.service;
 
+import com.example.demo.domain.SmartPhone;
 import com.example.demo.domain.SmartWatch;
-import com.example.demo.domain.pieces.Battery;
-import com.example.demo.domain.pieces.CPU;
-import com.example.demo.domain.pieces.HealthMonitor;
-import com.example.demo.domain.pieces.RAM;
+import com.example.demo.domain.pieces.*;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
+import javax.management.monitor.Monitor;
 import java.security.Provider;
 import java.util.List;
 
@@ -70,29 +69,31 @@ class SmartWatchServiceImplTest {
     @Test
     void saveIdZeroTest() {
         SmartWatchServiceImpl service= new SmartWatchServiceImpl();
-   SmartWatch smart;
-        smart = new SmartWatch( 0L, "Ios",
-                new RAM(1L,"DDR4",8),
-                new Battery(1L,3500.0),
-                new CPU(1L,4),
-                new HealthMonitor(1L,15.6,7));
+        Battery battery = new Battery(1L, 3500.0);
+        RAM ram = new RAM(1L, "DDR4", 8);
+        CPU cpu = new CPU(1L, 4);
+        HealthMonitor monitor = new HealthMonitor(1L,12.6,7);
+        SmartWatch smart = new SmartWatch(0L, "Ios smartwatch", ram, battery, cpu, true, monitor);
+        smart.getCpu().start();
         assertEquals(3,service.count());
         SmartWatch result= service.save(smart);
         assertNotNull(result);
         assertNotNull(result.getId());
         assertEquals(4, result.getId());
 
-
+//suma?
     }
 
     @Test
     void saveUpdateTest() {
         SmartWatchServiceImpl service= new SmartWatchServiceImpl();
-        SmartWatch smart = new SmartWatch( 1L, "new Apolo",
-                new RAM(1L,"DDR4",16),
-                new Battery(1L,3500.0),
-                new CPU(1L,8),
-                new HealthMonitor(1L,12.6,7));
+        Battery battery = new Battery(1L, 3500.0);
+        RAM ram = new RAM(1L, "DDR4", 8);
+        CPU cpu = new CPU(1L, 4);
+        HealthMonitor monitor = new HealthMonitor(1L,12.6,7);
+        SmartWatch smart = new SmartWatch(1L, "update smartwatch", ram, battery, cpu, true, monitor);
+        smart.getCpu().start();
+
         assertEquals(3,service.count());
 // not solved sigue sumando
 
@@ -101,23 +102,33 @@ class SmartWatchServiceImplTest {
 
         assertEquals(1L,result.getId());
         SmartWatch smart1= service.findOne(1L);
-        assertEquals("new Apolo", smart1.getName());
+        assertEquals("update smartwatch", smart1.getName());
 
 
     }
     @Test
     void saveNegativeIdTest(){
         SmartWatchServiceImpl service= new SmartWatchServiceImpl();
-        SmartWatch smart = new SmartWatch( -4L, "Old Apolo",
-                new RAM(1L,"DDR4",16),
-                new Battery(1L,3500.0),
-                new CPU(1L,8),
-                new HealthMonitor(1L,12.6,7));
-        assertEquals(3, service.count());
+
+        Battery battery = new Battery(1L, 3500.0);
+        RAM ram = new RAM(1L, "DDR4", 8);
+        CPU cpu = new CPU(1L, 4);
+
+        // smartphone exclusive pieces
+        HealthMonitor monitor = new HealthMonitor(1L, 0.0, 0);
+        SmartWatch smart = new SmartWatch(-4L, "negative smartwatch", ram, battery, cpu, true, monitor);
+        smart.getCpu().start();
+
+
+        assertEquals(3,service.count());
+        SmartWatch result= service.save(smart);
+        assertNotNull(result);
+        assertNotNull(result.getId());
+        assertEquals(4, result.getId());
         assertThrows(
                 IllegalArgumentException.class,
-                () -> service.save(smart));
-        assertEquals(3,service.count());
+                () -> service.save(null)
+       );
     }
         @Test
     void deleteNullTest() {
