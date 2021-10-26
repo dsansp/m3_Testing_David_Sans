@@ -44,16 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public Employee save(Employee employee) {
-
-
-            if (employee== null || employee.getId() <= 0L) {
-            throw new IllegalArgumentException("Unexpected value: null");}
-
-             if(employee.getId() < 0L)
-                 throw new IllegalArgumentException("Unexpected value: null");
-            employee.remove(employee.getId());
-
-            return this.employeeRepository.save(employee);
+        return this.employeeRepository.save(employee);
         }
 
 
@@ -61,7 +52,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 
 
-//problem
+//problem null
 
 
         @Override
