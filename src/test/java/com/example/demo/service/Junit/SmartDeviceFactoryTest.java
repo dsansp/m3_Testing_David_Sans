@@ -24,11 +24,7 @@ class SmartDeviceFactoryTest {
         assertTrue(result.getCpu().getOn());
         assertNotNull(result.getRam());
         assertNotNull(result.getBattery());
-
-
-        //smarthphone
-        //instanceof permite saber si un objeto es una instancia de una clase
-        assertTrue(result instanceof SmartPhone);
+       assertTrue(result instanceof SmartPhone);
         SmartPhone smartphone = (SmartPhone) result;
         assertNotNull(smartphone.getCamera());
         assertNotNull(smartphone.toString());
@@ -53,7 +49,7 @@ class SmartDeviceFactoryTest {
 
     }
 
-    @DisplayName("Comprobando si podria saltar una excepcion")
+    @DisplayName("Comprobando si podría saltar una exception")
     @Test
     void creatByTypeException(){
 
