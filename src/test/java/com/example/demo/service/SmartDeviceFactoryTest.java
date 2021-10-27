@@ -1,14 +1,16 @@
-package com.example.demo.service.Junit;
+package com.example.demo.service;
 
 import com.example.demo.domain.SmartDevice;
 import com.example.demo.domain.SmartPhone;
 import com.example.demo.domain.SmartWatch;
 import com.example.demo.service.SmartDeviceFacade;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class SmartDeviceFactoryTest {
+    @DisplayName("verificamos crear un SmartPhone")
 @Test
     void createSmartPhone() {
         SmartDevice result = SmartDeviceFacade.createSmartPhone();
@@ -25,6 +27,7 @@ class SmartDeviceFactoryTest {
         SmartPhone smartphone = (SmartPhone) result;
         assertNotNull(smartphone.getCamera());
     }
+    @DisplayName("verificamos crear un SmartWatch")
     @Test
     void createSmartWatch() {
 

@@ -6,12 +6,13 @@ import com.example.demo.service.IRPFCalculator;
 import com.example.demo.service.IVACalculator;
 import com.example.demo.service.SalaryCalculatorService;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class SalaryCalculatorServiceTest<empleado> {
-
+    @DisplayName("verificamos crear con Id null")
     @Test
     void calculateSalaryTestNull() {
 Employee empleado = new Employee(null,"pepe",28);
@@ -26,6 +27,7 @@ Employee empleado = new Employee(null,"pepe",28);
         assertNotNull(calculate);
 
     }
+    @DisplayName("verificamos crear salario Ok")
     @Test
     void calculateSalaryTestOk() {
         Employee empleado = new Employee(null,"pepe",28);
