@@ -1,6 +1,6 @@
 package com.example.demo.service.Junit;
 
-import com.example.demo.domain.SmartPhone;
+
 import com.example.demo.domain.SmartWatch;
 import com.example.demo.domain.pieces.*;
 import com.example.demo.service.SmartWatchServiceImpl;

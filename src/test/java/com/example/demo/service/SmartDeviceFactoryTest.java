@@ -3,7 +3,7 @@ package com.example.demo.service;
 import com.example.demo.domain.SmartDevice;
 import com.example.demo.domain.SmartPhone;
 import com.example.demo.domain.SmartWatch;
-import com.example.demo.service.SmartDeviceFacade;
+
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
