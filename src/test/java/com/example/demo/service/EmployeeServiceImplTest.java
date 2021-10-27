@@ -91,8 +91,8 @@ class EmployeeServiceImplTest {
         void saveIdNullTest(){
             Employee employee = new Employee(null,"Nombre1",45);
             Employee result = service.save(employee);
-            assertNotNull(result);
-            assertEquals(3, result.getId());
+            assertNull(result);
+
         }
         @DisplayName("Comprobar save con id = 0")
         @Test

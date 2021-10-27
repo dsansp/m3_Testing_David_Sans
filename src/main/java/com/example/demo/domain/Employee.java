@@ -15,7 +15,7 @@ public class Employee {
         this.age = age;
     }
 
-    public Long getId(long l) {
+    public Long getId() {
         return id;
     }
 
@@ -42,7 +42,5 @@ public class Employee {
     public void remove(Long id) { //add
     }
 
-    public long getId() { return id;
-    }
 
 }
