@@ -144,10 +144,10 @@ class SmartWatchServiceImplTest {
             assertNotNull(result);
             assertNotNull(result.getId());
             assertEquals(4, result.getId());
-            assertThrows(
+             assertThrows(
                     IllegalArgumentException.class,
-                    () -> service.save(null)
-            );
+                  () -> service.save(null)
+           );
         }
     }
 

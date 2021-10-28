@@ -69,9 +69,9 @@ public class SmartPhoneServiceImpl implements SmartPhoneService{
 		// asignar un id
         if (smartphone.getId() == null || smartphone.getId() == 0L) // nuevo smartphone
             smartphone.setId(getMaxSmartPhoneId() + 1); // genera id y lo asigna 
-
+		//en caso de ser una Id negativa no suma y salta excepción.
 		if(smartphone.getId() < 0)
-			throw new IllegalArgumentException("Unexpected value: null");
+			throw new IllegalArgumentException("Unexpected value: negative");
 
 		// en caso de actualizar primero lo eliminamos
         smartphones.remove(smartphone.getId()); // en caso de que ya exista lo quita para actualizarlo
