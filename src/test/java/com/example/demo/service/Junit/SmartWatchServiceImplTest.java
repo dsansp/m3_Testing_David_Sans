@@ -124,6 +124,7 @@ class SmartWatchServiceImplTest {
         }
 
 
+        @Disabled
         @DisplayName("comprobamos que no guarda con Id negativa")
         @Test
         void saveNegativeIdTest() {
